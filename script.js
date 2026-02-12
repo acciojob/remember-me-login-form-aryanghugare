@@ -26,7 +26,11 @@ submitBtn.addEventListener("click",(e) => {
 	credentails.username = usernameValue ;
 	credentails.password = passwordValue ;
 	if(remember){
-		localStorage.setItem("data",JSON.stringify(credentails));
+		const data = {
+			username: usernameValue,
+			password: passwordValue
+		};
+		localStorage.setItem("data", JSON.stringify(data));
 	}
 	else {
         localStorage.removeItem("data");

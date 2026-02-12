@@ -6,18 +6,22 @@ const rememberMe = document.querySelector("#checkbox");
 const existingBtn = document.querySelector("#existing");
 
 
-let credentails = JSON.parse(localStorage.get("data")) || {};
+let credentails = JSON.parse(localStorage.getItem("data")) || {};
 
 if(credentails.password){
 	existingBtn.style.display = "block";
 }
 
-submitBtn.addEventListener("click",(e)={
+submitBtn.addEventListener("click",(e) => {
 	e.preventDefault();
 	
 	let usernameValue = username.value ;
 	let passwordValue = password.value ;
-	alert(`Logged in as ${usernameValue}`);
+	if(usernameValue === "" || passwordValue === "" ) {
+		alert("Enter all the details properly")
+		return ;
+	}
+	alert(`Logged in as ${usernameValue}`); 
 	let remember = rememberMe.value ;
 	credentails.username = usernameValue ;
 	credentails.password = passwordValue ;

@@ -8,7 +8,7 @@ const existingBtn = document.querySelector("#existing");
 
 let credentails = JSON.parse(localStorage.getItem("data")) || {};
 
-if(credentails.password){
+if (credentails.username && credentails.password) {
 	existingBtn.style.display = "block";
 }
 
@@ -22,17 +22,24 @@ submitBtn.addEventListener("click",(e) => {
 		return ;
 	}
 	alert(`Logged in as ${usernameValue}`); 
-	let remember = rememberMe.value ;
+	let remember = rememberMe.checked ;
 	credentails.username = usernameValue ;
 	credentails.password = passwordValue ;
 	if(remember){
 		localStorage.setItem("data",JSON.stringify(credentails));
 	}
 	else {
-         localStorage.clear();
+        localStorage.removeItem("data");
 	}
 	
 })
+
+existingBtn.addEventListener("click", () => {
+	const saved = JSON.parse(localStorage.getItem("data"));
+	if (saved) {
+		alert(`Logged in as ${saved.username}`);
+	}
+});
 
 
 
